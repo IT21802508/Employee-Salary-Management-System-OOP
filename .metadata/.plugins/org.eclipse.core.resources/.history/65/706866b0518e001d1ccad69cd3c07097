@@ -1,0 +1,63 @@
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    
+     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<table>
+
+<c:forEach var="cus" items="${empDetails}">
+
+<c:set var="id" value="${emp.eid}"/>
+<c:set var="username" value="${emp.eusername}"/>
+<c:set var="password" value="${emp.password}"/>
+<c:set var="othours" value="${emp.othours}"/>
+<c:set var = "bonus" value="${emp.bonus}"/>
+<c:set var="netsalary" value="${emp.netsalary}"/>
+
+<tr>
+
+
+<td> Employee ID </td>
+<td> ${emp.eid} </td>
+
+</tr>
+
+<tr>
+<td> Employee Username:</td>
+<td> ${emp.eusername}</td>
+</tr>
+
+<tr>
+<td> Employee Password:</td>
+<td>${emp.password}</td>
+</tr>
+
+<tr>
+<td> OT Hours:</td>
+<td> ${emp.othours}</td>
+</tr>
+
+<tr>
+<td> Bonus:</td>
+<td> ${emp.bonus} </td>
+</tr>
+<tr>
+<td> Net Salary: </td>
+<td> ${emp.netsalary} </td>
+</tr>
+
+
+
+
+</c:forEach>
+</table>
+</body>
+</html>

@@ -1,0 +1,183 @@
+package Com.Salary;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import Com.Customer.DBConnection;
+
+
+
+public class CustomerDBUtil {
+	private static boolean isSuccess;
+	private static Connection con =null;
+	private static Statement stmt = null;
+	private static ResultSet rs = null;
+	
+	
+	
+	public static List<Employee> validate(String username , String password){
+		
+		ArrayList<Employee> emp = new ArrayList<>();
+		
+		
+		try {
+			
+			con = DBconnection.getConnection();
+			stmt = con.createStatement();
+			
+			String sql = "select * from salary where username='"+username+"' and password='"+password+"'";
+			
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			if(rs.next()) {
+				int id = rs.getInt(1);
+				String uname = rs.getString(2);
+				String pass = rs.getString(3);
+			    int othours=rs.getInt(4);
+				int bonus=rs.getInt(5);
+				int netsalary = rs.getInt(6); 
+				
+				Employee e1 = new Employee(id ,uname ,pass, othours , bonus , netsalary);
+				emp.add(e1);
+				
+			}
+			
+			
+			
+			
+		}
+		
+		catch(Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		return emp;
+	}
+
+
+
+	public static boolean insertCustomer(String username, String password, String othours, String bonus, String netsalary) {
+		
+		boolean isSuccess = false;
+		
+
+	   try {
+		   
+		   con = DBconnection.getConnection();
+		   stmt=con.createStatement();
+		   
+		   String sql = "Insert into salary values(0,'"+username+"','"+password+"','"+othours+"','"+bonus+"','"+netsalary+"')";
+		   int rs= stmt.executeUpdate(sql);
+		   
+		   if(rs>0) {
+			   
+			   isSuccess = true ;
+		   }else {
+			   isSuccess = false;
+		   }
+		   
+		   
+		   }
+	   catch(Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		
+		return isSuccess;
+		
+	}
+	
+	public static boolean updateEmployee(String id , String username ,String password , String othours,String bonus , String netsalary) {
+		
+		
+		try {
+			
+			
+			con= DBconnection.getConnection();
+			stmt=con.createStatement();
+			
+			String sql = "update salary set username='"+username+"',password='"+password+"',othours='"+othours+"',bonus='"+bonus+"',netsalary='"+netsalary+"'" +"where id='"+id+"'";
+			int rs= stmt.executeUpdate(sql);
+			
+			if(rs>0) {
+				
+				isSuccess = true;
+			}else {
+				
+				isSuccess = false;
+			}
+			
+			
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		
+		
+		
+		return isSuccess;
+		
+		
+		
+	}
+	
+	public static List<Employee> getEmployeeDetails(String id){
+		
+		int convertedID = Integer.parseInt(id);
+		
+		
+		ArrayList<Employee> emp = new ArrayList<>();
+		
+		try {
+			
+			
+			con =DBconnection.getConnection();
+			stmt=con.createStatement();
+			String sql = "select * from salary where id='"+ convertedID+"' ";
+			
+			rs= stmt.executeQuery(sql);
+			
+			
+			while(rs.next()==true) {
+				
+				
+			   int id1=rs.getInt(1);
+				String username=rs.getString(2);
+				String password=rs.getString(3);
+				String othours= rs.getString(4);
+				String bonus= rs.getString(5);
+				String netsalary = rs.getString(6);
+				
+				
+				
+				Employee e = new Employee(id1,username,password,othours,bonus,netsalary);
+				
+				emp.add(e);
+				
+			}
+			
+		}catch(Exception e) {
+			
+			
+			e.printStackTrace();
+		}
+		
+		
+		return emp ;
+		
+		
+		
+		
+		
+		
+	
+    }
+	
+    }

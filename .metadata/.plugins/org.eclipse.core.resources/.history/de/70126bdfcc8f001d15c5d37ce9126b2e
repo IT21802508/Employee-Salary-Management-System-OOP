@@ -1,0 +1,35 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    
+    
+     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+     
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<table>
+
+
+<c:foreach var="emp" items="${empDetails}">
+
+
+<C:set var="id" value="${cus.eid}"/>
+<c:set var="username" value="${cus.eusername}"/>
+<c:set var="password" value="${ }"
+
+
+
+
+
+</table>
+
+
+
+
+</body>
+</html>

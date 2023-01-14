@@ -1,0 +1,58 @@
+package Com.Salary;
+
+public class Employee {
+	
+	
+	private int eid ;
+	private String eusername ;
+	private String password ;
+	private int othours;
+	private int bonus ;
+	private int netsalary;
+	
+	public Employee(int eid, String eusername, String password, int othours, int bonus, int netsalary) {
+		
+		this.eid = eid;
+		this.eusername = eusername;
+		this.password = password;
+		this.othours = othours;
+		this.bonus = bonus;
+		this.netsalary = netsalary;
+	}
+	
+	
+	public int getEid() {
+		return eid;
+	}
+
+
+	public String getEusername() {
+		return eusername;
+	}
+
+	
+
+	public String getPassword() {
+		return password;
+	}
+
+	
+
+	public int getOthours() {
+		return othours;
+	}
+
+	
+	public int getBonus() {
+		return bonus;
+	}
+
+	
+	public int getNetsalary() {
+		return netsalary;
+	}
+
+	
+	
+	
+}
